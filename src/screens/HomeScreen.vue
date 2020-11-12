@@ -52,8 +52,8 @@ export default {
     goToScreen1 () {
       this.navigation.navigate('ScreenOne')
     },
-    goToMeetupDetail () {
-      this.navigation.navigate('Meetup')
+    goToMeetupDetail (meetupId) {
+      this.navigation.navigate('Meetup', {meetupId})
     }
   }
 }

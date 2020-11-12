@@ -3,17 +3,19 @@ import Vue from 'vue-native-core'
 import axios from 'axios'
 
 import meetups from './modules/meetups'
+import threads from './modules/threads'
 
 Vue.use(vuex)
 
 
 export default new vuex.Store({
     modules: {
-        meetups
+        meetups,
+        threads
     },
     // Like data in component. We are keeping our data in the state
     state: {
-        todos: [],
+      
     },
     // Like computed properties in componen.
     // You can use getters to access state in the store
@@ -24,21 +26,12 @@ export default new vuex.Store({
     // To perform actions that usualy results in data
     actions: {
         // 2. We are getting here from dispatch of action in homeScreen
-        fetchTodos ({commit, state}) {
-            return axios.get('https://jsonplaceholder.typicode.com/todos')
-                .then(res => {
-                    const todos = res.data
-                    // 3. Cmmiting setTodos mutation
-                    commit('setTodos', todos)
-                    return state.todos
-                })
-        },
+      
     },
     // Like methods in component. To save data to the state.
     mutations: {
-        setTodos (state, todos) {
-            // 4. We are seeting data to our sate in reactive way
-            Vue.set(state, 'todos', todos)
-        },
+        setItems (state, {items, resource}) {
+            Vue.set(state[resource], 'items', items)
+        }
     }
 })
